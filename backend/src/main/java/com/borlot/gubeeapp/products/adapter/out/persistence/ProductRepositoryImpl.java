@@ -22,10 +22,17 @@ public class ProductRepositoryImpl implements ProductRepository {
             conn = DB.getConnection();
 
             st = conn.createStatement();
-            rs = st.executeQuery("select * from product");
+            rs = st.executeQuery("select product.ProductId, product.Name, product.Description, market.Name, technology.Name\n" +
+                    "from product\n" +
+                    "         left join productTechRelation on product.ProductId = productTechRelation.ProductId\n" +
+                    "         left join technology on productTechRelation.TechId = technology.TechId\n" +
+                    "         inner join market on product.MarketId = market.MarketId");
 
             while(rs.next()){
-                System.out.println(rs.getInt("ProductId") + "," + rs.getString("Name") + "," + rs.getString("Description"));
+                System.out.printf("%d, %s, %s, %s, %s\n", rs.getInt("product.ProductId"), rs.getString("product.Name"),
+                rs.getString("product.Description"), rs.getString("market.Name"), rs.getString("technology.Name")
+                );
+                //System.out.println(rs.getInt("ProductId") + "," + rs.getString("Name") + "," + rs.getString("Description"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

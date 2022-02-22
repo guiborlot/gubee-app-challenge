@@ -1,6 +1,8 @@
 package com.borlot.gubeeapp;
 
 import com.borlot.gubeeapp.products.adapter.out.persistence.ProductRepositoryImpl;
+import com.borlot.gubeeapp.products.application.port.in.ProductRepository;
+import com.borlot.gubeeapp.products.application.service.AllProducts;
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpServer;
 
@@ -16,8 +18,9 @@ public class App
 {
     public static void main( String[] args ) throws IOException {
 
-        ProductRepositoryImpl controller = new ProductRepositoryImpl();
-        controller.findAll();
+        AllProducts allProducts = new AllProducts(new ProductRepositoryImpl());
+
+        allProducts.execute();
 
         //System.out.println( "Hello World!" );
         int serverPort = 8085;
