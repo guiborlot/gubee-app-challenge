@@ -1,5 +1,6 @@
 package com.borlot.gubeeapp;
 
+import com.borlot.gubeeapp.products.adapter.out.persistence.ProductRepositoryImpl;
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpServer;
 
@@ -14,6 +15,10 @@ import java.net.InetSocketAddress;
 public class App 
 {
     public static void main( String[] args ) throws IOException {
+
+        ProductRepositoryImpl controller = new ProductRepositoryImpl();
+        controller.findAll();
+
         //System.out.println( "Hello World!" );
         int serverPort = 8085;
         HttpServer server = HttpServer.create(new InetSocketAddress(serverPort), 0);
