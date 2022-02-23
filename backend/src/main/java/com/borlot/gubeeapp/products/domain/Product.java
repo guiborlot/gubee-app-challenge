@@ -1,11 +1,13 @@
 package com.borlot.gubeeapp.products.domain;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@ToString
 public class Product {
 
     private Integer id;
@@ -19,15 +21,22 @@ public class Product {
     }
 
     public Product(Integer id, Name name, Description description, Market market, List<String> technologies) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.market = market;
-        this.addTechnologies(technologies);
+        this.addTechnologiesByString(technologies);
     }
 
-    private void addTechnologies(List<String> technologies){
+    public void addTechnologiesByString(List<String> technologies){
         for(String tech: technologies){
             this.technologies.add(new Technology(tech));
+        }
+    }
+
+    public void addTechnologiesByTech(List<Technology> technologies){
+        for(Technology tech: technologies){
+            this.technologies.add(new Technology(tech.getValue()));
         }
     }
 }
