@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class Service {
 
@@ -26,9 +25,12 @@ public class Service {
 
     private List<Product> joinTechnologiesWithSameProduct(List<Product> products){
         for(int i=0; i< products.size(); i++){
-            if(Objects.equals(products.get(i).getId(), products.get(i + 1).getId())){
-                products.get(i).addTechnologiesByTech(products.get(i+1).getTechnologies());
-                products.remove(i+1);
+            for(int j=i+1; j<products.size(); j++){
+                if(products.get(i).getId().equals(products.get(j).getId())){
+                    products.get(i).addTechnologiesByTech(products.get(j).getTechnologies());
+                    products.remove(j);
+                    j--;
+                }
             }
         }
         return products;

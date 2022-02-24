@@ -18,11 +18,12 @@ public class ProductController {
         int serverPort = 8085;
         HttpServer server = HttpServer.create(new InetSocketAddress(serverPort), 0);
 
-        HttpContext context = server.createContext("/products", exchange -> {
-            if("GET".equals(exchange.getRequestMethod())){
+        server.createContext("/products", exchange -> {
+            if ("GET".equals(exchange.getRequestMethod())) {
                 Gson gson = new Gson();
                 String productJson = gson.toJson(allProducts.execute().stream().map(ProductDTO::new).collect(Collectors.toList()));
                 exchange.getResponseHeaders().set("Content-Type", "application/json");
+                exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                 exchange.sendResponseHeaders(200, productJson.getBytes().length);
                 OutputStream output = exchange.getResponseBody();
                 output.write(productJson.getBytes());
