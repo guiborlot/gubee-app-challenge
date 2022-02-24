@@ -1,7 +1,6 @@
 package com.borlot.gubeeapp;
 
 import com.borlot.gubeeapp.products.adapter.in.web.ProductController;
-
 import java.io.IOException;
 
 public class App 

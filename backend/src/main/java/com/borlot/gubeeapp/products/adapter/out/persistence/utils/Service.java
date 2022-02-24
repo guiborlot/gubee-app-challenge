@@ -1,7 +1,6 @@
 package com.borlot.gubeeapp.products.adapter.out.persistence.utils;
 
 import com.borlot.gubeeapp.products.domain.Product;
-import com.borlot.gubeeapp.products.domain.Technology;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +21,10 @@ public class Service {
                     Collections.singletonList(rs.getString("technology.Name")));
             products.add(product);
         }
+        return joinTechnologiesWithSameProduct(products);
+    }
+
+    private List<Product> joinTechnologiesWithSameProduct(List<Product> products){
         for(int i=0; i< products.size(); i++){
             if(Objects.equals(products.get(i).getId(), products.get(i + 1).getId())){
                 products.get(i).addTechnologiesByTech(products.get(i+1).getTechnologies());

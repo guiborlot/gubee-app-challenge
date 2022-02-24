@@ -22,6 +22,7 @@ public class ProductController {
             if("GET".equals(exchange.getRequestMethod())){
                 Gson gson = new Gson();
                 String productJson = gson.toJson(allProducts.execute().stream().map(ProductDTO::new).collect(Collectors.toList()));
+                exchange.getResponseHeaders().set("Content-Type", "application/json");
                 exchange.sendResponseHeaders(200, productJson.getBytes().length);
                 OutputStream output = exchange.getResponseBody();
                 output.write(productJson.getBytes());
