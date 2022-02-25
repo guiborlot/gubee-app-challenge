@@ -1,37 +1,54 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title>Products</mat-card-title>
+        <span class="example-list-section">
+            <ul>
+              <li *ngFor="let technology of technologies">
+                <mat-checkbox (change)="filter(technology, $event)">
+                  {{technology}}
+                </mat-checkbox>
+              </li>
+<!--              <button mat-flat-button color="primary" (click)="filter()">Filtrar</button>-->
+            </ul>
+          </span>
+
     </mat-card-header>
     <mat-card-content>
         <table mat-table [dataSource]="dataSource$" class="mat-elevation-z8">
-            <ng-container matColumnDef="id">
+              <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef>ID</th>
                 <td mat-cell *matCellDef="let products">{{products.id}}</td>
-            </ng-container>
+              </ng-container>
 
-            <ng-container matColumnDef="name">
+              <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>
                 <td mat-cell *matCellDef="let products">{{products.name}}</td>
-            </ng-container>
+              </ng-container>
 
-            <ng-container matColumnDef="description">
+              <ng-container matColumnDef="description">
                 <th mat-header-cell *matHeaderCellDef>Description</th>
                 <td mat-cell *matCellDef="let products">
-                    {{products.description}}
+                  {{products.description}}
                 </td>
-            </ng-container>
+              </ng-container>
 
-            <ng-container matColumnDef="market">
+              <ng-container matColumnDef="market">
                 <th mat-header-cell *matHeaderCellDef>Market</th>
                 <td mat-cell *matCellDef="let products">{{products.market}}</td>
-            </ng-container>
+              </ng-container>
 
-            <ng-container matColumnDef="technologies">
-                <th mat-header-cell *matHeaderCellDef>Technologies</th>
+              <ng-container matColumnDef="technologies">
                 <td mat-cell *matCellDef="let products">
-                    {{products.technologies}}
+                  <span>
+                    <ul>
+                      <li *ngFor="let technologies of products.technologies">
+                        {{technologies}}
+                      </li>
+                    </ul>
+                  </span>
                 </td>
-            </ng-container>
+                <th mat-header-cell *matHeaderCellDef>Technologies</th>
+              </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

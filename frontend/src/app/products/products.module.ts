@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { MatCardModule } from '@angular/material/card'
 import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
 import { ProductsListComponent } from './products-list/products-list.component';
 
 
@@ -13,7 +15,9 @@ import { ProductsListComponent } from './products-list/products-list.component';
     CommonModule,
     ProductsRoutingModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule
   ]
 })
 export class ProductsModule { }
