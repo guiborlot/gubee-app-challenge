@@ -1,3 +1,6 @@
+create database gubeeapi;
+use gubeeapi;
+
 create table market
 (
     MarketId int(11)     not null auto_increment,
@@ -93,9 +96,3 @@ insert into productTechRelation (ProductId, TechId)
 values (4, 3);
 insert into productTechRelation (ProductId, TechId)
 values (4, 2);
-select product.ProductId, product.Name, product.Description, market.Name, technology.Name
-from product
-         left join productTechRelation on product.ProductId = productTechRelation.ProductId
-         left join technology on productTechRelation.TechId = technology.TechId
-         inner join market on product.MarketId = market.MarketId
-order by ProductId;
