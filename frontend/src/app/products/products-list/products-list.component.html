@@ -2,9 +2,19 @@
     <mat-card-header>
         <mat-card-title>Products</mat-card-title>
         <span class="example-list-section">
+          <ul>
+            <li *ngFor="let market of markets">
+              <mat-checkbox (change)="filterMarkets(market, $event)">
+                {{market}}
+              </mat-checkbox>
+            </li>
+<!--              <button mat-flat-button color="primary" (click)="filter()">Filtrar</button>-->
+          </ul>
+        </span>
+        <span class="example-list-section">
             <ul>
               <li *ngFor="let technology of technologies">
-                <mat-checkbox (change)="filter(technology, $event)">
+                <mat-checkbox (change)="filterTechnologies(technology, $event)">
                   {{technology}}
                 </mat-checkbox>
               </li>
@@ -51,7 +61,7 @@
               </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="filterRows(row)"></tr>
         </table>
     </mat-card-content>
 </mat-card>

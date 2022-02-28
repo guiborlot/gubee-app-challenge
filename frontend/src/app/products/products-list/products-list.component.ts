@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Observable, tap } from "rxjs";
 import { ProductsService } from "../products.service";
 import {MatTableDataSource} from "@angular/material/table";
@@ -10,7 +10,7 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class ProductsListComponent implements OnInit {
 
-    dataSource$!: MatTableDataSource<any>;
+    dataSource$!: Observable<any>;
 
     displayedColumns: string[] = [
         "id",
@@ -21,8 +21,9 @@ export class ProductsListComponent implements OnInit {
     ];
 
     technologies: any = [];
+    markets: any = [];
+    marketsChecked: any = [];
     technologiesChecked: any = [];
-
 
     constructor(private service: ProductsService) {}
 
@@ -30,7 +31,21 @@ export class ProductsListComponent implements OnInit {
         this.service.list().subscribe(res => {
           this.dataSource$ = res;
           this.loadAllTechnologies(res);
+          this.loadAllMarkets(res);
         });
+        
+    }
+
+    loadAllMarkets(products: any){
+      let allMarkets: any = [];
+      products.forEach((product:any) => {
+        allMarkets.push(product.market);
+      })
+      this.loadUniqueMarkets(allMarkets);
+    }
+
+    loadUniqueMarkets(allMarkets: string[]){
+      this.markets = [... new Set(allMarkets)];
     }
 
     loadAllTechnologies(products: any){
@@ -51,16 +66,35 @@ export class ProductsListComponent implements OnInit {
       });
     }
 
-    filter(technology: string, event: any){
+    filterTechnologies(technology: string, event: any){
       if(!this.technologiesChecked.find((element:string) => element == technology) && event.checked){
         this.technologiesChecked.push(technology)
       } else {
         this.technologiesChecked = this.technologiesChecked.filter((item:string) => item!=technology);
       }
-      console.log(this.technologiesChecked)
     }
 
+    filterMarkets(market: string, event: any){
+      if(!this.marketsChecked.find((element: string) => element == market) && event.checked){
+        this.marketsChecked.push(market)
+      } else {
+        this.marketsChecked = this.marketsChecked.filter((item:string) => item!=market)
+      }
+    }
 
-
-
+    filterRows(row: any){
+      let hasTechnology = false;
+      for(let i=0; i<row.technologies.length; i++){
+        if(this.technologiesChecked.includes(row.technologies[i])){
+          hasTechnology = true;
+        }
+      }
+      if(this.marketsChecked.includes(row.market) || hasTechnology){
+        return false;
+      } 
+      if(this.marketsChecked == 0 && this.technologiesChecked == 0){
+        return false;
+      }
+      return true;
+    }
 }
