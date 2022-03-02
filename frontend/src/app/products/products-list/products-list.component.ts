@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { Observable, tap } from "rxjs";
+import { TOUCH_BUFFER_MS } from "@angular/cdk/a11y/input-modality/input-modality-detector";
+import { Component, OnInit } from "@angular/core";
+import { Observable} from "rxjs";
 import { ProductsService } from "../products.service";
-import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
     selector: "app-products-list",
@@ -66,35 +66,23 @@ export class ProductsListComponent implements OnInit {
       });
     }
 
-    filterTechnologies(technology: string, event: any){
-      if(!this.technologiesChecked.find((element:string) => element == technology) && event.checked){
-        this.technologiesChecked.push(technology)
+    checkMarket(market:string){
+      if(this.marketsChecked.includes(market)){
+        this.marketsChecked = this.marketsChecked.filter((e:string) => e != market)
       } else {
-        this.technologiesChecked = this.technologiesChecked.filter((item:string) => item!=technology);
+        this.marketsChecked.push(market);
       }
     }
 
-    filterMarkets(market: string, event: any){
-      if(!this.marketsChecked.find((element: string) => element == market) && event.checked){
-        this.marketsChecked.push(market)
+    checkTechnology(technology:string){
+      if(this.technologiesChecked.includes(technology)){
+        this.technologiesChecked = this.technologiesChecked.filter((e:string) => e != technology);
       } else {
-        this.marketsChecked = this.marketsChecked.filter((item:string) => item!=market)
+        this.technologiesChecked.push(technology);
       }
     }
 
-    filterRows(row: any){
-      let hasTechnology = false;
-      for(let i=0; i<row.technologies.length; i++){
-        if(this.technologiesChecked.includes(row.technologies[i])){
-          hasTechnology = true;
-        }
-      }
-      if(this.marketsChecked.includes(row.market) || hasTechnology){
-        return false;
-      } 
-      if(this.marketsChecked == 0 && this.technologiesChecked == 0){
-        return false;
-      }
-      return true;
+    filter(){
+      this.service.list(this.marketsChecked, this.technologiesChecked).subscribe(res => this.dataSource$ = res);
     }
 }

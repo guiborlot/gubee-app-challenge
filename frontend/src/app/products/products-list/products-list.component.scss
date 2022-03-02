@@ -7,3 +7,27 @@ mat-card-header{
   justify-content: space-between;
   margin-right: 50px;
 }
+
+.btn{
+  height: 25%;
+  align-self: center;
+  margin: 20px;
+}
+
+.filters{
+  display: flex;
+  padding: 10px;
+}
+
+.filters ul {
+  list-style: none;
+}
+
+.filters ul>li{
+  margin: 5px;
+}
+
+.list h3{
+  display: flex;
+  justify-content: center;
+}
