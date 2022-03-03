@@ -2,6 +2,7 @@ package com.borlot.gubeeapp.products.adapter.in.web;
 
 import com.borlot.gubeeapp.products.adapter.in.web.utils.Service;
 import com.borlot.gubeeapp.products.adapter.out.persistence.ProductRepositoryImpl;
+import com.borlot.gubeeapp.products.adapter.out.persistence.utils.DB;
 import com.borlot.gubeeapp.products.application.service.AllProducts;
 
 import javax.ws.rs.GET;
@@ -15,7 +16,11 @@ import java.util.List;
 @Path("/products")
 public class ProductController {
 
-    AllProducts allProducts = new AllProducts(new ProductRepositoryImpl());
+    private final AllProducts allProducts;
+
+    public ProductController(DB db) {
+        this.allProducts = new AllProducts(new ProductRepositoryImpl(db));
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

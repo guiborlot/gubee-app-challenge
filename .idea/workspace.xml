@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="855a96a2-99fd-457a-831e-b9cf2ce6de75" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/backend-quarkus/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend-quarkus/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-quarkus/src/main/java/com/borlot/gubeeapp/products/adapter/in/web/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend-quarkus/src/main/java/com/borlot/gubeeapp/products/adapter/in/web/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-quarkus/src/main/java/com/borlot/gubeeapp/products/adapter/out/persistence/ProductRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend-quarkus/src/main/java/com/borlot/gubeeapp/products/adapter/out/persistence/ProductRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-quarkus/src/main/java/com/borlot/gubeeapp/products/adapter/out/persistence/utils/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend-quarkus/src/main/java/com/borlot/gubeeapp/products/adapter/out/persistence/utils/ProdDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-quarkus/src/main/java/com/borlot/gubeeapp/products/application/service/AllProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend-quarkus/src/main/java/com/borlot/gubeeapp/products/application/service/AllProducts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-quarkus/src/test/java/com/borlot/gubeeapp/ExampleResourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend-quarkus/src/test/java/com/borlot/gubeeapp/ExampleResourceTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="25sIJIuyXrC4VusMNkicA0Z8m4r" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend-quarkus" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="855a96a2-99fd-457a-831e-b9cf2ce6de75" name="Changes" comment="" />
+      <created>1646309294193</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646309294193</updated>
+      <workItem from="1646309295729" duration="17000" />
+    </task>
+    <servers />
+  </component>
+</project>

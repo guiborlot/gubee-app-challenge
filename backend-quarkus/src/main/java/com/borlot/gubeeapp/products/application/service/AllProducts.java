@@ -4,6 +4,7 @@ import com.borlot.gubeeapp.products.application.port.in.ProductRepository;
 import com.borlot.gubeeapp.products.domain.Product;
 import lombok.AllArgsConstructor;
 
+import javax.inject.Singleton;
 import java.util.List;
 
 @AllArgsConstructor

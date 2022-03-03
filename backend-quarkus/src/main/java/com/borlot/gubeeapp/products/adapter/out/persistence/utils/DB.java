@@ -1,15 +1,12 @@
 package com.borlot.gubeeapp.products.adapter.out.persistence.utils;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-public class DB {
+public interface DB {
+    Properties loadProperties();
 
-    private static Connection conn = null;
-
-    public static Connection getConnection(){
+    default Connection getConnection(Connection conn){
         if(conn == null){
             try{
                 Properties props = loadProperties();
@@ -23,7 +20,7 @@ public class DB {
         return conn;
     }
 
-    public static void closeConnection(){
+    default void closeConnection(Connection conn){
         if (conn != null){
             try {
                 conn.close();
@@ -33,17 +30,7 @@ public class DB {
         }
     }
 
-    private static Properties loadProperties(){
-        try (FileInputStream fs = new FileInputStream("db.properties")){
-            Properties props = new Properties();
-            props.load(fs);
-            return props;
-        } catch (IOException e){
-            throw new DbException(e.getMessage());
-        }
-    }
-
-    public static void closeStatement(Statement st){
+    default void closeStatement(Statement st){
         if(st != null) {
             try {
                 st.close();
@@ -53,7 +40,7 @@ public class DB {
         }
     }
 
-    public static void closeResultSet(ResultSet rs){
+    default void closeResultSet(ResultSet rs){
         if(rs != null) {
             try {
                 rs.close();
